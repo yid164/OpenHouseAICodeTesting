@@ -28,7 +28,7 @@ public class UserRestController {
         return null;
     }
 
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @PostMapping("/User")
     public void addNewUser(@RequestBody User user){
         LOG.info("User saved");
         userRepository.save(user);
