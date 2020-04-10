@@ -24,6 +24,8 @@ The FE will be sending logs every 5 minutes from up to 100 users. The logs will 
 
 4. Testing: `Postman`, and `MongoDB Compass`
 
+![Image description](Screen%20Shot%202020-04-10%20at%201.23.39%20PM.png)
+
 ### Solution Details:
 
 1. Database, it has been hold on my database (MongoDB), so you do not need setup the database
