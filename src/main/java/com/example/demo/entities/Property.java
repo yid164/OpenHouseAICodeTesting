@@ -5,13 +5,13 @@ import org.springframework.data.annotation.Id;
 
 public class Property {
     @Id
-    private ObjectId id;
+    private String id;
     private int locationX;
     private int locationY;
     private String viewedID;
     private String pageFrom;
     private String pageTo;
-    private ObjectId actionId;
+    private String actionId;
 
     public Property(){
 
@@ -25,11 +25,11 @@ public class Property {
         this.pageTo = pageTo;
     }
 
-    public ObjectId getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(ObjectId id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -73,11 +73,11 @@ public class Property {
         this.pageTo = pageTo;
     }
 
-    public ObjectId getActionId() {
+    public String getActionId() {
         return actionId;
     }
 
-    public void setActionId(ObjectId actionId) {
+    public void setActionId(String actionId) {
         this.actionId = actionId;
     }
 
