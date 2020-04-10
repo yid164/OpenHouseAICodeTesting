@@ -2,10 +2,11 @@ package com.example.demo.entities;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
-public class Property {
+public class Properties {
     @Id
     private ObjectId id;
     private int locationX;
@@ -15,11 +16,11 @@ public class Property {
     private String pageTo;
     private String actionId;
 
-    public Property(){
+    public Properties(){
 
     }
-
-    public Property(int locationX, int locationY, String viewedID, String pageFrom, String pageTo){
+    @PersistenceConstructor
+    public Properties(int locationX, int locationY, String viewedID, String pageFrom, String pageTo){
         this.locationX = locationX;
         this.locationY = locationY;
         this.viewedID = viewedID;
@@ -88,15 +89,15 @@ public class Property {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Property property = (Property) o;
+        Properties properties = (Properties) o;
 
-        if (locationX != property.locationX) return false;
-        if (locationY != property.locationY) return false;
-        if (id != null ? !id.equals(property.id) : property.id != null) return false;
-        if (viewedID != null ? !viewedID.equals(property.viewedID) : property.viewedID != null) return false;
-        if (pageFrom != null ? !pageFrom.equals(property.pageFrom) : property.pageFrom != null) return false;
-        if (pageTo != null ? !pageTo.equals(property.pageTo) : property.pageTo != null) return false;
-        return actionId != null ? actionId.equals(property.actionId) : property.actionId == null;
+        if (locationX != properties.locationX) return false;
+        if (locationY != properties.locationY) return false;
+        if (id != null ? !id.equals(properties.id) : properties.id != null) return false;
+        if (viewedID != null ? !viewedID.equals(properties.viewedID) : properties.viewedID != null) return false;
+        if (pageFrom != null ? !pageFrom.equals(properties.pageFrom) : properties.pageFrom != null) return false;
+        if (pageTo != null ? !pageTo.equals(properties.pageTo) : properties.pageTo != null) return false;
+        return actionId != null ? actionId.equals(properties.actionId) : properties.actionId == null;
     }
 
     @Override
@@ -113,7 +114,7 @@ public class Property {
 
     @Override
     public String toString() {
-        return "Property{" +
+        return "Properties{" +
                 "locationX=" + locationX +
                 ", locationY=" + locationY +
                 ", viewedID='" + viewedID + '\'' +
