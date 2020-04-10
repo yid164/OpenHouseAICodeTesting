@@ -20,3 +20,6 @@ The FE will be sending logs every 5 minutes from up to 100 users. The logs will 
 
 2. Restful API (Put, Post, Delete, Get)
 
+3. Database: MongoDB
+
+
