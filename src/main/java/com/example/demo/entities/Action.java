@@ -3,27 +3,47 @@ package com.example.demo.entities;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
 /**
- * Action Entity
+ * Action Entity for the MongoDB
  */
 @Document
 public class Action {
 
+    /**
+     * Id
+     */
     @Id
     private ObjectId id;
 
+
+
+    /**
+     * time
+     */
     private String time;
 
+
+    /**
+     * type
+     */
     private String type;
 
+    /**
+     * properties
+     */
     private Properties properties;
 
+    /**
+     * Constructors and Getter and Setter
+     */
     public Action(){}
 
+    @PersistenceConstructor
     public Action(String time, String type){
         this.time = time;
         this.type = type;

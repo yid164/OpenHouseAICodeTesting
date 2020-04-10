@@ -1,21 +1,36 @@
 package com.example.demo.entities;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
+/**
+ * User Entity for the MongoDB
+ */
 @Document
 public class User {
+
+    /**
+     * user Id
+     */
     @Id
     private String userId;
 
+    /**
+     * session Id
+     */
     private String sessionId;
 
+    /**
+     * actions
+     */
     private List<Action> actions;
 
+
+    /**
+     * Constructors and Getter and Setter
+     */
     public User(){}
 
     public User(String userId, String sessionId){

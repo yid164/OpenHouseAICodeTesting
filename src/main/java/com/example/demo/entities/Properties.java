@@ -5,16 +5,41 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+/**
+ * Properties Entity for the MongoDB
+ */
 @Document
 public class Properties {
+    /**
+     * id
+     */
     @Id
     private ObjectId id;
+
+    /**
+     * locationX and locationY
+     */
     private int locationX;
     private int locationY;
+
+    /**
+     * Viewed ID
+     */
     private String viewedId;
+
+    /**
+     * PageFrom
+     */
     private String pageFrom;
+
+    /**
+     * PageTo
+     */
     private String pageTo;
 
+    /**
+     * Constructors and Getter and Setter
+     */
     public Properties(){
 
     }
