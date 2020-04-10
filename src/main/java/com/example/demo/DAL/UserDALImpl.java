@@ -15,19 +15,19 @@ public class UserDALImpl implements UserDAL {
     private MongoTemplate mongoTemplate;
 
     @Override
-    public List<User> findAllUsers() {
+    public List<User> getAllUsers() {
         return mongoTemplate.findAll(User.class);
     }
 
     @Override
-    public User findUserById(String userId) {
+    public User getUserById(String userId) {
         Query query = new Query();
         query.addCriteria(Criteria.where("userId").is(userId));
         return mongoTemplate.findOne(query, User.class);
     }
 
     @Override
-    public void addUser(User user) {
+    public void addNewUser(User user) {
         mongoTemplate.save(user);
     }
 

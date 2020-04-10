@@ -8,11 +8,11 @@ import java.util.List;
 
 public interface UserDAL {
 
-    public List<User> findAllUsers();
+    public List<User> getAllUsers();
 
-    public User findUserById(String userId);
+    public User getUserById(String userId);
 
-    public void addUser(User user);
+    public void addNewUser(User user);
 
 
     public void deleteById(String userId);
