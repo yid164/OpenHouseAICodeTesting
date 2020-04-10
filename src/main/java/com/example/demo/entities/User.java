@@ -2,16 +2,18 @@ package com.example.demo.entities;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
+@Document
 public class User {
     @Id
     private String userId;
 
     private String sessionId;
 
-    private List<Action> actions;
+//    private List<Action> actions;
 
     public User(){}
 
@@ -37,13 +39,13 @@ public class User {
         this.sessionId = sessionId;
     }
 
-    public List<Action> getActions() {
-        return actions;
-    }
+//    public List<Action> getActions() {
+//        return actions;
+//    }
 
-    public void setActions(List<Action> actions) {
-        this.actions = actions;
-    }
+//    public void setActions(List<Action> actions) {
+//        this.actions = actions;
+//    }
 
     @Override
     public boolean equals(Object o) {
@@ -53,15 +55,15 @@ public class User {
         User user = (User) o;
 
         if (userId != null ? !userId.equals(user.userId) : user.userId != null) return false;
-        if (sessionId != null ? !sessionId.equals(user.sessionId) : user.sessionId != null) return false;
-        return actions != null ? actions.equals(user.actions) : user.actions == null;
+        return (sessionId != null ? !sessionId.equals(user.sessionId) : user.sessionId != null); //return false;
+//        return actions != null ? actions.equals(user.actions) : user.actions == null;
     }
 
     @Override
     public int hashCode() {
         int result = userId != null ? userId.hashCode() : 0;
         result = 31 * result + (sessionId != null ? sessionId.hashCode() : 0);
-        result = 31 * result + (actions != null ? actions.hashCode() : 0);
+//        result = 31 * result + (actions != null ? actions.hashCode() : 0);
         return result;
     }
 
@@ -70,7 +72,7 @@ public class User {
         return "User{" +
                 ", userId='" + userId + '\'' +
                 ", sessionId='" + sessionId + '\'' +
-                ", actions=" + actions +
+                ", actions=" +
                 '}';
     }
 }

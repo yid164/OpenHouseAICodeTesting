@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/")
+@RequestMapping(value = "/rest")
 public class UserRestController {
 
     private final Logger LOG = LoggerFactory.getLogger(getClass());
@@ -28,20 +28,20 @@ public class UserRestController {
         return null;
     }
 
-    @PostMapping("/User")
+    @PostMapping("/")
     public void addNewUser(@RequestBody User user){
         LOG.info("User saved");
         userRepository.save(user);
     }
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public List<User> getAllUsers(){
         LOG.info("Get all users");
         return userRepository.findAll();
     }
 
     @RequestMapping(value="/{userId}", method = RequestMethod.DELETE)
-    public void deleteUser(String userId){
+    public void deleteUser(@PathVariable String userId){
         LOG.info("Delete User");
         userRepository.deleteById(userId);
     }

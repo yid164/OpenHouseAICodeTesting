@@ -2,10 +2,12 @@ package com.example.demo.entities;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document
 public class Property {
     @Id
-    private String id;
+    private ObjectId id;
     private int locationX;
     private int locationY;
     private String viewedID;
@@ -25,11 +27,11 @@ public class Property {
         this.pageTo = pageTo;
     }
 
-    public String getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
