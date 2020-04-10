@@ -1,6 +1,5 @@
 package com.example.demo.restful;
 
-import com.example.demo.DAL.UserDAL;
 import com.example.demo.entities.User;
 import com.example.demo.repository.UserRepository;
 import org.slf4j.Logger;
