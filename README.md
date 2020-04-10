@@ -10,13 +10,13 @@ The FE will be sending logs every 5 minutes from up to 100 users. The logs will 
 
 ### Problem Solution: 
 
-#####1. Should construct some entities: 
+1. Should construct some entities: 
 
-a. Users: userId, sessionId, actions
+    a. Users: userId, sessionId, actions
 
-b. Actions: time, type, properties
+    b. Actions: time, type, properties
 
-c. Property: locationX, locationY, viewId, pageFrom, pageTo
+    c. Property: locationX, locationY, viewId, pageFrom, pageTo
 
-#####2. Restful API (Put, Post, Delete, Get)
+2. Restful API (Put, Post, Delete, Get)
 
