@@ -11,19 +11,18 @@ public class Properties {
     private ObjectId id;
     private int locationX;
     private int locationY;
-    private String viewedID;
+    private String viewedId;
     private String pageFrom;
     private String pageTo;
-    private String actionId;
 
     public Properties(){
 
     }
     @PersistenceConstructor
-    public Properties(int locationX, int locationY, String viewedID, String pageFrom, String pageTo){
+    public Properties(int locationX, int locationY, String viewedId, String pageFrom, String pageTo){
         this.locationX = locationX;
         this.locationY = locationY;
-        this.viewedID = viewedID;
+        this.viewedId = viewedId;
         this.pageFrom = pageFrom;
         this.pageTo = pageTo;
     }
@@ -52,12 +51,12 @@ public class Properties {
         this.locationY = locationY;
     }
 
-    public String getViewedID() {
-        return viewedID;
+    public String getViewedId() {
+        return viewedId;
     }
 
-    public void setViewedID(String viewedID) {
-        this.viewedID = viewedID;
+    public void setViewedId(String viewedId) {
+        this.viewedId = viewedId;
     }
 
     public String getPageFrom() {
@@ -76,13 +75,6 @@ public class Properties {
         this.pageTo = pageTo;
     }
 
-    public String getActionId() {
-        return actionId;
-    }
-
-    public void setActionId(String actionId) {
-        this.actionId = actionId;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -94,10 +86,9 @@ public class Properties {
         if (locationX != properties.locationX) return false;
         if (locationY != properties.locationY) return false;
         if (id != null ? !id.equals(properties.id) : properties.id != null) return false;
-        if (viewedID != null ? !viewedID.equals(properties.viewedID) : properties.viewedID != null) return false;
+        if (viewedId != null ? !viewedId.equals(properties.viewedId) : properties.viewedId != null) return false;
         if (pageFrom != null ? !pageFrom.equals(properties.pageFrom) : properties.pageFrom != null) return false;
-        if (pageTo != null ? !pageTo.equals(properties.pageTo) : properties.pageTo != null) return false;
-        return actionId != null ? actionId.equals(properties.actionId) : properties.actionId == null;
+        return (pageTo != null ? !pageTo.equals(properties.pageTo) : properties.pageTo != null);
     }
 
     @Override
@@ -105,10 +96,9 @@ public class Properties {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + locationX;
         result = 31 * result + locationY;
-        result = 31 * result + (viewedID != null ? viewedID.hashCode() : 0);
+        result = 31 * result + (viewedId != null ? viewedId.hashCode() : 0);
         result = 31 * result + (pageFrom != null ? pageFrom.hashCode() : 0);
         result = 31 * result + (pageTo != null ? pageTo.hashCode() : 0);
-        result = 31 * result + (actionId != null ? actionId.hashCode() : 0);
         return result;
     }
 
@@ -117,7 +107,7 @@ public class Properties {
         return "Properties{" +
                 "locationX=" + locationX +
                 ", locationY=" + locationY +
-                ", viewedID='" + viewedID + '\'' +
+                ", viewedId='" + viewedId + '\'' +
                 ", pageFrom='" + pageFrom + '\'' +
                 ", pageTo='" + pageTo + '\'' +
                 '}';
