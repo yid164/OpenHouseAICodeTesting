@@ -44,7 +44,7 @@ public class Action {
     public Action(){}
 
     @PersistenceConstructor
-    public Action(String time, String type){
+    public Action(ObjectId id, String time, String type){
         this.time = time;
         this.type = type;
     }

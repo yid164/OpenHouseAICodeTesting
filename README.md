@@ -42,6 +42,15 @@ The FE will be sending logs every 5 minutes from up to 100 users. The logs will 
     
 5. Delete: `localhost:8080/rest/'userId'`
 
+### Additional Problem: 
+    The logs should be retrievable by any combination of user, time range and log type. The response should be a list of logs.
+    
+ #### Solution: 
+    1. Since all the actions should be retrievals, I will implement the GET APIs on this. 
+    2. Optimizing the database and adding the indexes for the Users, Types, and Logs. 
+    3. Writing the queries in the Restful API in different combinations such as (User, Time), (User, Type), (Time, Type), etc.
+    4. Testing the code. 
+
 ### How to run: 
     
     Before you run it, please make sure your port: 8080 is clear

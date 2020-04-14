@@ -1,5 +1,6 @@
 package com.example.demo.entities;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -12,9 +13,13 @@ import java.util.List;
 public class User {
 
     /**
-     * user Id
+     * _id
      */
     @Id
+    private ObjectId _id;
+    /**
+     * user Id
+     */
     private String userId;
 
     /**
@@ -33,7 +38,8 @@ public class User {
      */
     public User(){}
 
-    public User(String userId, String sessionId){
+    public User(ObjectId _id, String userId, String sessionId){
+        this._id = _id;
         this.userId = userId;
         this.sessionId = sessionId;
     }
@@ -63,6 +69,14 @@ public class User {
         this.actions = actions;
     }
 
+    public ObjectId get_id() {
+        return _id;
+    }
+
+    public void set_id(ObjectId _id) {
+        this._id = _id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -70,6 +84,7 @@ public class User {
 
         User user = (User) o;
 
+        if (_id != null ? !_id.equals(user._id) : user._id != null) return false;
         if (userId != null ? !userId.equals(user.userId) : user.userId != null) return false;
         if (sessionId != null ? !sessionId.equals(user.sessionId) : user.sessionId != null) return false;
         return actions != null ? actions.equals(user.actions) : user.actions == null;
@@ -77,7 +92,8 @@ public class User {
 
     @Override
     public int hashCode() {
-        int result = userId != null ? userId.hashCode() : 0;
+        int result = _id != null ? _id.hashCode() : 0;
+        result = 31 * result + (userId != null ? userId.hashCode() : 0);
         result = 31 * result + (sessionId != null ? sessionId.hashCode() : 0);
         result = 31 * result + (actions != null ? actions.hashCode() : 0);
         return result;
@@ -88,7 +104,7 @@ public class User {
         return "User{" +
                 ", userId='" + userId + '\'' +
                 ", sessionId='" + sessionId + '\'' +
-                ", actions=" + actions +'\''+
+                ", actions=" + actions +
                 '}';
     }
 }
