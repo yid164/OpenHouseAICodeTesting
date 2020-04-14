@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -30,7 +31,7 @@ public class UserRestController {
 
     /**
      * Constructors
-     * @param logsRepository
+     * @param logsRepository for the interface
      */
     public UserRestController(LogsRepository logsRepository){
         this.logsRepository = logsRepository;
@@ -75,7 +76,6 @@ public class UserRestController {
     /**
      * DELETE Request
      * @param userId id
-     * @return user and delete
      */
     @RequestMapping(value="/{userId}", method = RequestMethod.DELETE)
     public void deleteUser(@PathVariable String userId){
@@ -86,10 +86,29 @@ public class UserRestController {
         logsRepository.deleteById(userId);
     }
 
-    @RequestMapping(value="/time/{time}", method = RequestMethod.GET)
-    public List<User> getUsersByTime(@PathVariable String time){
-        Log.info("GET user by time");
-        return logsRepository.findUserLogByTime(time);
+    /**
+     * GET all users in a range of time
+     * @param start time
+     * @param end   time
+     * @return users
+     */
+    @RequestMapping(value="/time/{start}/{end}", method = RequestMethod.GET)
+    public List<User> getUsersByTimeRange(@PathVariable Date start, @PathVariable Date end){
+        Log.info("GET users by time range");
+        return logsRepository.findUsersLogByTimeRange(start, end);
+    }
+
+    /**
+     * GET user in a range of time by the ID
+     * @param start time
+     * @param end time
+     * @param userId userId
+     * @return user log
+     */
+    @RequestMapping(value="/time/{start}/{end}/{userId}", method = RequestMethod.GET)
+    public List<User> getUsersByTimeRange(@PathVariable Date start, @PathVariable Date end, @PathVariable String userId){
+        Log.info("GET users by time range and id");
+        return logsRepository.findUserLogByUserIdAndTime(userId, start, end);
     }
 
     /**

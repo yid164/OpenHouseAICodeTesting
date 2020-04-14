@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.repository.Aggregation;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.*;
@@ -16,8 +17,12 @@ import static org.springframework.data.mongodb.repository.Aggregation.*;
 
 @Repository
 public class LogsRepository {
+    private final MongoTemplate mongoTemplate;
+
     @Autowired
-    private MongoTemplate mongoTemplate;
+    public LogsRepository(MongoTemplate mongoTemplate) {
+        this.mongoTemplate = mongoTemplate;
+    }
 
     /**
      * Find all user logs
@@ -49,27 +54,35 @@ public class LogsRepository {
 
     }
 
-    /**
-     * Find UserLog by UserId and Time
-     * @param userId
-     * @param time
-     * @return
-     */
-    public List<User> findUserLogByUserIdAndTime(String userId, String time){
-        Query query = new Query();
-        query.addCriteria(Criteria.where("userId")).fields().elemMatch("actions", Criteria.where("time").is(time));
-        return mongoTemplate.find(query, User.class);
-    }
 
     /**
-     * Find User Log by Time
-     * @param time
-     * @return
+     * Check out the userId in a range of time
+     * @param userId String
+     * @param start Date
+     * @param end Date
+     * @return users
      */
-    public List<User> findUserLogByTime(String time){
-        Query query = new Query();
-        query.fields().elemMatch("actions", Criteria.where("time").is(time));
-        return mongoTemplate.find(query,User.class);
+    public List<User> findUserLogByUserIdAndTime(String userId, Date start, Date end){
+        Criteria criteria = Criteria.where("actions.time").gte(start).and("actions.time").lte(end).and("userId").is(userId);
+        TypedAggregation<User> aggregation = newAggregation(User.class,
+                match(criteria));
+        AggregationResults<User> results = mongoTemplate.aggregate(aggregation, User.class);
+        return results.getMappedResults();
+    }
+
+
+    /**
+     * Check out all the users in a range of time
+     * @param start Date
+     * @param end Date
+     * @return users
+     */
+    public List<User> findUsersLogByTimeRange(Date start, Date end){
+        Criteria criteria = Criteria.where("actions.time").gte(start).and("actions.time").lte(end).and("userId").ne(null);
+        TypedAggregation<User> aggregation = newAggregation(User.class,
+                match(criteria));
+        AggregationResults<User> results = mongoTemplate.aggregate(aggregation, User.class);
+        return results.getMappedResults();
     }
 
     /**
