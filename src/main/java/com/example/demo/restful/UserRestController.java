@@ -1,6 +1,7 @@
 package com.example.demo.restful;
 
 import com.example.demo.entities.User;
+import com.example.demo.repository.LogsRepository;
 import com.example.demo.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,14 +25,16 @@ public class UserRestController {
     /**
      * UserRepository interface
      */
-    private final UserRepository userRepository;
+    //private final UserRepository userRepository;
+
+    private final LogsRepository logsRepository;
 
     /**
      * Constructors
-     * @param userRepository interface
+     * @param logsRepository
      */
-    public UserRestController(UserRepository userRepository){
-        this.userRepository = userRepository;
+    public UserRestController(LogsRepository logsRepository){
+        this.logsRepository = logsRepository;
     }
 
     /**
@@ -40,9 +43,10 @@ public class UserRestController {
      * @return user
      */
     @RequestMapping(value="/{userId}", method = RequestMethod.GET)
-    public Optional getUser(@PathVariable String userId){
+    public List<User> getUser(@PathVariable String userId){
         LOG.info("Getting user with ID: {}. ",userId);
-        return userRepository.findById(userId);
+        //return userRepository.findById(userId);
+        return logsRepository.findUserLogByUserId(userId);
     }
 
     /**
@@ -53,7 +57,8 @@ public class UserRestController {
     @RequestMapping(value="/", method = RequestMethod.POST)
     public User addNewUser(@RequestBody User user){
         LOG.info("User saved");
-        userRepository.save(user);
+        //userRepository.save(user);
+        logsRepository.save(user);
         return user;
     }
 
@@ -64,7 +69,8 @@ public class UserRestController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public List<User> getAllUsers(){
         LOG.info("Get all users");
-        return userRepository.findAll();
+        //return userRepository.findAll();
+        return logsRepository.findAll();
     }
 
     /**
@@ -73,11 +79,12 @@ public class UserRestController {
      * @return user and delete
      */
     @RequestMapping(value="/{userId}", method = RequestMethod.DELETE)
-    public Optional deleteUser(@PathVariable String userId){
+    public void deleteUser(@PathVariable String userId){
         LOG.info("Delete User");
-        Optional user = userRepository.findById(userId);
-        userRepository.deleteById(userId);
-        return user;
+        //Optional user = userRepository.findById(userId);
+        //userRepository.deleteById(userId);
+        //return user;
+        logsRepository.deleteById(userId);
     }
 
 }
