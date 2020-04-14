@@ -104,7 +104,7 @@ public class LogsRepository {
      * @param type  type
      * @return users
      */
-    public List<User> findUserLogByIdandType(String userId, String type){
+    public List<User> findUserLogByIdAndType(String userId, String type){
         Criteria criteria = Criteria.where("actions.type").is(type).and("userId").is(userId);
         TypedAggregation<User> aggregation = newAggregation(User.class,
                 match(criteria));

@@ -6,6 +6,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,7 +26,7 @@ public class Action {
     /**
      * time
      */
-    private String time;
+    private Date time;
 
 
     /**
@@ -44,7 +45,7 @@ public class Action {
     public Action(){}
 
     @PersistenceConstructor
-    public Action(ObjectId id, String time, String type){
+    public Action(ObjectId id, Date time, String type){
         this.id = id;
         this.time = time;
         this.type = type;
@@ -58,11 +59,11 @@ public class Action {
         this.id = id;
     }
 
-    public String getTime() {
+    public Date getTime() {
         return time;
     }
 
-    public void setTime(String time) {
+    public void setTime(Date time) {
         this.time = time;
     }
 

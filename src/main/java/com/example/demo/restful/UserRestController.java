@@ -122,7 +122,7 @@ public class UserRestController {
     @RequestMapping(value = "/type/{type}/{userId}", method = RequestMethod.GET)
     public List<User> getsTypeIdUsers(@PathVariable String type, @PathVariable String userId){
         Log.info("GET the typed users");
-        return logsRepository.findUserLogByIdandType(userId, type);
+        return logsRepository.findUserLogByIdAndType(userId, type);
     }
 
 }
