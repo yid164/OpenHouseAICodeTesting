@@ -44,7 +44,8 @@ public class Properties {
 
     }
     @PersistenceConstructor
-    public Properties(int locationX, int locationY, String viewedId, String pageFrom, String pageTo){
+    public Properties(ObjectId id, int locationX, int locationY, String viewedId, String pageFrom, String pageTo){
+        this.id = id;
         this.locationX = locationX;
         this.locationY = locationY;
         this.viewedId = viewedId;
