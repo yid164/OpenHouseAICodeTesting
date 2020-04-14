@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.repository.Aggregation;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -43,6 +44,30 @@ public class LogsRepository {
         return mongoTemplate.find(query, User.class);
 
     }
+
+    /**
+     *
+     * @param userId
+     * @param time
+     * @return
+     */
+    public List<User> findUserLogByUserIdAndTime(String userId, String time){
+        Query query = new Query();
+        query.addCriteria(Criteria.where("userId").is(userId).andOperator(Criteria.where("time").is(time)));
+        return mongoTemplate.find(query, User.class);
+    }
+
+    /**
+     *
+     * @param time
+     * @return
+     */
+    public List<User> findUserLogByTime(String time){
+        Query query = new Query();
+        query.fields().elemMatch("actions", Criteria.where("time").is(time));
+        return mongoTemplate.find(query,User.class);
+    }
+
 
     /**
      * Delete a user by userId

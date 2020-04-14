@@ -3,6 +3,7 @@ package com.example.demo.restful;
 import com.example.demo.entities.User;
 import com.example.demo.repository.LogsRepository;
 import com.example.demo.repository.UserRepository;
+import com.oracle.tools.packager.Log;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -85,6 +86,12 @@ public class UserRestController {
         //userRepository.deleteById(userId);
         //return user;
         logsRepository.deleteById(userId);
+    }
+
+    @RequestMapping(value="/time/{time}", method = RequestMethod.GET)
+    public List<User> getUsersByTime(@PathVariable String time){
+        Log.info("GET user by time");
+        return logsRepository.findUserLogByTime(time);
     }
 
 }
